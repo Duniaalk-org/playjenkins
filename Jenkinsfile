@@ -19,7 +19,7 @@ pipeline {
             sh '''
             /kaniko/executor --dockerfile `pwd`/Dockerfile \
                              --context `pwd` \
-                             --destination=${_IMAGE_NAME}:${BUILD_NUMBER}
+                             --destination=duniaalk/myweb:${BUILD_NUMBER}
             '''
           }
         }
