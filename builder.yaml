@@ -1,27 +1,24 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: kaniko
+  name: kanikoexcute
   namespace: jenkins
 spec:
   containers:
-  - name: kubectl
-    image: joshendriks/alpine-k8s
-    command:
-    - /bin/cat
-    tty: true    
   - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug
-    command:
-    - /busybox/cat
-    tty: true
+    image: gcr.io/kaniko-project/executor:51734fc3a33e04f113487853d118608ba6ff2b81
+    args:
+    - "--dockerfile=Dockerfile"
+    - "--context=git://github.com/kunchalavikram1427/kaniko-demo.git" #git://github.com/kunchalavikram1427/connected-app.git#refs/heads/master
+    - "--destination=duniaalk/keniko:latest"
     volumeMounts:
-      - name: kaniko-secret
-        mountPath: /kaniko/.docker
-  volumes:
     - name: kaniko-secret
-      secret:
-        secretName: dockercred 
-        items:
-          - key: .dockerconfigjson
-            path: config.json
+      mountPath: /kaniko/.docker
+  restartPolicy: Never
+  volumes:
+  - name: kaniko-secret
+    secret:
+      secretName: dockercred
+      items:
+        - key: .dockerconfigjson
+          path: config.json
