@@ -6,11 +6,7 @@ metadata:
 spec:
   containers:
   - name: kaniko
-    image: gcr.io/kaniko-project/executor:51734fc3a33e04f113487853d118608ba6ff2b81
-    args:
-    - "--dockerfile=Dockerfile"
-    - "--context=git://github.com/kunchalavikram1427/kaniko-demo.git" #git://github.com/kunchalavikram1427/connected-app.git#refs/heads/master
-    - "--destination=duniaalk/keniko:latest"
+    image: gcr.io/kaniko-project/executor:51734fc3a33e04f113487853d118608ba6ff2b81"
     volumeMounts:
     - name: kaniko-secret
       mountPath: /kaniko/.docker
