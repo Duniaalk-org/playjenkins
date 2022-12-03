@@ -16,7 +16,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: duniaalk/myweb:tagname
+      - image: duniaalk/myweb
         imagePullPolicy: Always
         name: myweb
 
